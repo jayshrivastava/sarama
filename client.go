@@ -199,8 +199,8 @@ func NewClient(addrs []string, conf *Config) (Client, error) {
 		if err == nil {
 		} else if errors.Is(err, ErrLeaderNotAvailable) || errors.Is(err, ErrReplicaNotAvailable) || errors.Is(err, ErrTopicAuthorizationFailed) || errors.Is(err, ErrClusterAuthorizationFailed) {
 			// indicates that maybe part of the cluster is down, but is not fatal to creating the client
-			Logger.Println(err)
-		} else {
+		panic(err)		
+} else {
 			close(client.closed) // we haven't started the background updater yet, so we have to do this manually
 			_ = client.Close()
 			return nil, err
