@@ -1012,6 +1012,7 @@ func (client *client) tryRefreshMetadata(topics []string, attemptsRemaining int,
 			allKnownMetaData := len(topics) == 0
 			// valid response, use it
 			shouldRetry, err := client.updateMetadata(response, allKnownMetaData)
+Logger.Printf("AAAAA client/metadata %t %v+ %v+\n", shouldRetry, err, response.Topics)
 			if shouldRetry {
 				Logger.Println("client/metadata found some partitions to be leaderless")
 				return retry(err) // note: err can be nil
