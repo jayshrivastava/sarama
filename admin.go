@@ -253,6 +253,7 @@ func (ca *clusterAdmin) CreateTopic(topic string, detail *TopicDetail, validateO
 			return err
 		}
 
+		Logger.Printf("AAAAA create topics request %v+\n", request)
 		rsp, err := b.CreateTopics(request)
 		if err != nil {
 			return err
@@ -364,6 +365,7 @@ func (ca *clusterAdmin) ListTopics() (map[string]TopicDetail, error) {
 			Name: topic.Name,
 		}
 		describeConfigsResources = append(describeConfigsResources, &topicResource)
+		Logger.Printf("AAAAA listing topics= %v+\n", topicDetails)	
 	}
 
 	// Send the DescribeConfigsRequest

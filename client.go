@@ -1003,8 +1003,9 @@ func (client *client) tryRefreshMetadata(topics []string, attemptsRemaining int,
 		if !atomic.CompareAndSwapInt64(&client.updateMetaDataMs, t, time.Now().UnixNano()/int64(time.Millisecond)) {
 			return nil
 		}
-
+		DebugLogger.Printf("AAAAA client/metadata sending request %v+", req)
 		response, err := broker.GetMetadata(req)
+		DebugLogger.Printf("AAAAA client/metadata error %v+", err)
 		var kerror KError
 		var packetEncodingError PacketEncodingError
 		if err == nil {
